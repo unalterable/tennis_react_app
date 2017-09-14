@@ -1,4 +1,4 @@
-"use-strict";
+"use strict";
 
 const TENNIS_SCORES = ["0", "15", "30", "40"]
 
@@ -21,6 +21,8 @@ const TENNIS_RULES = {
     }
   },
   scorePlayer: function(args){
+    args.player1 = args.player1 || "0";
+    args.player2 = args.player2 || "0";
     if(args.scorer){
       const scorerName = args.scorer,
             opponentName = args.scorer === "player1" ? "player2" : "player1",
