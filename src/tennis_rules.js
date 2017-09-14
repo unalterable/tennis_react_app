@@ -19,6 +19,14 @@ const TENNIS_RULES = {
         case "A":
           return {scorer: "0", opponent: "0", winner: true};
     }
+  },
+  scorePlayer: function(args){
+    const scorerName = args.scorer;
+    const opponentName = args.scorer === "player1" ? "player2" : "player1";
+    const score = TENNIS_RULES.score({scorer: args[scorerName], opponent: args[opponentName]});
+    return score.winner ?
+      {[scorerName]: "Winner", [opponentName]: "Loser"} :
+      {[scorerName]:  score.scorer, [opponentName]: score.opponent};
   }
 };
 

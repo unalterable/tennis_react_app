@@ -2,7 +2,7 @@
 
 require('mocha');
 const expect = require('chai').expect;
-const sut = require('../src/tennis_rules')
+const sut = require('../src/tennis_rules');
 
 describe("Tennis Scoring", function(){
   it("Basic scoring works correctly", function(){
@@ -27,5 +27,14 @@ describe("Tennis Scoring", function(){
   });
   it("Winning from advantage", function(){
     expect(sut.score({scorer: "A", opponent: "40"})).to.eql({scorer: "0", opponent:"0", winner: true});
+  });
+});
+
+describe("ScorePlayer function", function(){
+  it("Basic scoring works correctly", function(){
+    expect(sut.scorePlayer({player1: "0", player2: "0", scorer: "player2"})).to.eql({player1: "0", player2: "15"});
+    expect(sut.scorePlayer({player1: "30", player2: "40", scorer: "player1"})).to.eql({player1: "40", player2: "40"});
+    expect(sut.scorePlayer({player1: "40", player2: "30", scorer: "player1"})).to.eql({player1: "Winner", player2: "Loser"});
+    expect(sut.scorePlayer({player1: "40", player2: "A", scorer: "player2"})).to.eql({player1: "Loser", player2: "Winner"});
   });
 });
