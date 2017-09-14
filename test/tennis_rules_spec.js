@@ -39,7 +39,7 @@ describe("ScorePlayer function", function(){
   it("Basic scoring works correctly", function(){
     expect(sut.scorePlayer({player1: "0", player2: "0", scorer: "player2"})).to.eql({player1: "0", player2: "15"});
     expect(sut.scorePlayer({player1: "30", player2: "40", scorer: "player1"})).to.eql({player1: "40", player2: "40"});
-    expect(sut.scorePlayer({player1: "40", player2: "30", scorer: "player1"})).to.eql({player1: "Winner", player2: "Loser"});
-    expect(sut.scorePlayer({player1: "40", player2: "A", scorer: "player2"})).to.eql({player1: "Loser", player2: "Winner"});
+    expect(sut.scorePlayer({player1: "40", player2: "30", scorer: "player1"})).to.eql({player1: "0", player2: "0", winner: "player1"});
+    expect(sut.scorePlayer({player1: "40", player2: "A", scorer: "player2"})).to.eql({player1: "0", player2: "0", winner: "player2"});
   });
 });

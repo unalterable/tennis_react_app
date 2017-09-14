@@ -22,12 +22,12 @@ const TENNIS_RULES = {
   },
   scorePlayer: function(args){
     if(args.scorer){
-      const scorerName = args.scorer;
-      const opponentName = args.scorer === "player1" ? "player2" : "player1";
-      const score = TENNIS_RULES.score({scorer: args[scorerName], opponent: args[opponentName]});
-      return score.winner ?
-        {[scorerName]: "Winner", [opponentName]: "Loser"} :
-        {[scorerName]:  score.scorer, [opponentName]: score.opponent};
+      const scorerName = args.scorer,
+            opponentName = args.scorer === "player1" ? "player2" : "player1",
+            score = TENNIS_RULES.score({scorer: args[scorerName], opponent: args[opponentName]}),
+            result = {[scorerName]:  score.scorer, [opponentName]: score.opponent};
+      if(score.winner){ result.winner = scorerName; }
+      return result;
     }
     return args;
   }
