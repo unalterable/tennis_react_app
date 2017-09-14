@@ -21,12 +21,15 @@ const TENNIS_RULES = {
     }
   },
   scorePlayer: function(args){
-    const scorerName = args.scorer;
-    const opponentName = args.scorer === "player1" ? "player2" : "player1";
-    const score = TENNIS_RULES.score({scorer: args[scorerName], opponent: args[opponentName]});
-    return score.winner ?
-      {[scorerName]: "Winner", [opponentName]: "Loser"} :
-      {[scorerName]:  score.scorer, [opponentName]: score.opponent};
+    if(args.scorer){
+      const scorerName = args.scorer;
+      const opponentName = args.scorer === "player1" ? "player2" : "player1";
+      const score = TENNIS_RULES.score({scorer: args[scorerName], opponent: args[opponentName]});
+      return score.winner ?
+        {[scorerName]: "Winner", [opponentName]: "Loser"} :
+        {[scorerName]:  score.scorer, [opponentName]: score.opponent};
+    }
+    return args;
   }
 };
 

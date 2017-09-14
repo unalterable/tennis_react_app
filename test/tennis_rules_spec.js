@@ -31,6 +31,11 @@ describe("Tennis Scoring", function(){
 });
 
 describe("ScorePlayer function", function(){
+  it("No Scorer? No Change", function(){
+    expect(sut.scorePlayer({player1: "0", player2: "0"})).to.eql({player1: "0", player2: "0"});
+    expect(sut.scorePlayer({player1: "40", player2: "0"})).to.eql({player1: "40", player2: "0"});
+    expect(sut.scorePlayer({player1: "0", player2: "30"})).to.eql({player1: "0", player2: "30"});
+  });
   it("Basic scoring works correctly", function(){
     expect(sut.scorePlayer({player1: "0", player2: "0", scorer: "player2"})).to.eql({player1: "0", player2: "15"});
     expect(sut.scorePlayer({player1: "30", player2: "40", scorer: "player1"})).to.eql({player1: "40", player2: "40"});
