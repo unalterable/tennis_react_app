@@ -4,7 +4,7 @@
 require('co-mocha');
 const expect = require('chai').expect;
 const fetch = require('node-fetch');
-const server = require('../server');
+const server = require('../app/server');
 
 describe("Tennis Scoring", function(){
   before('start server', function(){

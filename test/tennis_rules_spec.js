@@ -2,7 +2,7 @@
 
 require('mocha');
 const expect = require('chai').expect;
-const sut = require('../src/tennis_rules');
+const sut = require('../app/model/tennis_rules');
 
 describe("Tennis Scoring", function(){
   it("Basic scoring works correctly", function(){
