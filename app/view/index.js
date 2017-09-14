@@ -14,8 +14,8 @@ module.exports = `
   </div>
 <% } %>
 
-<button onclick="window.location='/?player1=<%=player1%>&player2=<%=player2%>&scorer=player1';">Player 1 scored</button>
-<button onclick="window.location='/?player1=<%=player1%>&player2=<%=player2%>&scorer=player2';">Player 2 scored</button>
+<button id="player1Scores" onclick="window.location='/?player1=<%=player1%>&player2=<%=player2%>&scorer=player1';">Player 1 scored</button>
+<button id="player2Scores" onclick="window.location='/?player1=<%=player1%>&player2=<%=player2%>&scorer=player2';">Player 2 scored</button>
 
-<button onclick="window.location='/?player1=0&player2=0';">Reset Game</button>
+<button id="resetGame" onclick="window.location='/?player1=0&player2=0';">Reset Game</button>
 `;

@@ -10,9 +10,11 @@
   "license": "ISC",
   "dependencies": {
     "chai": "^4.1.2",
+    "co": "^4.6.0",
     "co-mocha": "^1.2.0",
     "ejs": "^2.5.7",
     "mocha": "^3.5.3",
-    "node-fetch": "^1.7.3"
+    "node-fetch": "^1.7.3",
+    "selenium-webdriver": "2.47.0"
   }
 }

@@ -1,6 +1,6 @@
 "use strict";
 
-const TENNIS_SCORES = ["0", "15", "30", "40"]
+const TENNIS_SCORES = ["0", "15", "30", "40", "A"]
 
 const TENNIS_RULES = {
   score: function(currScore){
