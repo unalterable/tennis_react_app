@@ -37,7 +37,7 @@ describe("Tennis Scoring", function(){
       dom = yield browser.getDom()
       expect(dom).to.have.string('<div>Player 1</div><div>0</div>');
       expect(dom).to.have.string('<div>Player 2</div><div>0</div>');
-      expect(dom).to.have.string('Player 2 Won!');
+      expect(dom).to.have.string('player2 Won!');
     });
     after('Quit Browser', function*(){
       yield browser.quit();
@@ -57,13 +57,13 @@ describe("Tennis Scoring", function(){
     const dom = yield (yield fetch('http://localhost:3000/?player1=15&player2=40&scorer=player2')).text();
     expect(dom).to.have.string('<div>Player 1</div><div>0</div>');
     expect(dom).to.have.string('<div>Player 2</div><div>0</div>');
-    expect(dom).to.have.string('Player 2 Won!');
+    expect(dom).to.have.string('player2 Won!');
   });
   it("Other Player Wins", function*(){
     const dom = yield (yield fetch('http://localhost:3000/?player1=A&player2=40&scorer=player1')).text();
     expect(dom).to.have.string('<div>Player 1</div><div>0</div>');
     expect(dom).to.have.string('<div>Player 2</div><div>0</div>');
-    expect(dom).to.have.string('Player 1 Won!');
+    expect(dom).to.have.string('player1 Won!');
   });
   it("No Change", function*(){
     const dom = yield (yield fetch('http://localhost:3000/?player1=15&player2=0')).text();
