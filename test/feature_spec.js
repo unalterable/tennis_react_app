@@ -4,12 +4,12 @@ require('mocha');
 require('co-mocha');
 const expect = require('chai').expect;
 const fetch = require('node-fetch');
-const server = require('../app/server');
 const Browser = require('./browser-helper');
+let server;
 
 describe("Tennis Scoring", function(){
   before('Start server', function(){
-    server.listen(3000);
+    server = require("../index.js");
   });
   describe("Total Feature", function(){
     this.timeout(30*1000);

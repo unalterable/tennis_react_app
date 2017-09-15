@@ -1,6 +1,9 @@
 "use strict";
 
 module.exports = `
+<div id="app"></div>
+<script src='./app/view/app.js'></script>
+
 <div>Player 1</div><div><%=player1%></div>
 <div>Player 2</div><div><%=player2%></div>
 
