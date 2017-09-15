@@ -1,8 +1,7 @@
 "use strict";
-const express = require('express');
-const app = express();
-const port = 3000;
 
-app.use(express.static('build'));
+const app = require('./app/routes');
 
-module.exports = app.listen(port);
+app.listen(3000, function(){
+  console.log("Express server listening on port %d", 3000);
+});

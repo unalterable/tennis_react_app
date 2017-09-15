@@ -3,17 +3,16 @@
 require('mocha');
 require('co-mocha');
 const expect = require('chai').expect;
-const fetch = require('node-fetch');
 const Browser = require('./browser-helper');
-let server;
-let browser, dom;
+const app = require("../app/routes.js");
+let server, browser, dom;
 
 describe("Tennis Scoring", function(){
-  before('Start server', function(){
-    server = require("../server.js");
+  this.timeout(30*1000);
+  before('Start server', function*(){
+    server = app.listen(3000);
   });
   describe("Total Feature", function(){
-    this.timeout(30*1000);
     before('Start Browser', function*(){
       browser = Browser();
       yield browser.visit("http://localhost:3000/");
@@ -43,7 +42,7 @@ describe("Tennis Scoring", function(){
       yield browser.quit();
     });
   });
-  after('Stop server', function(){
+  after('Stop server', function*(){
     server.close();
   });
 });
