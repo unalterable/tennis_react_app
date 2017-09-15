@@ -1,22 +1,14 @@
-const queryString = require('querystring');
-const mustache = require('mustache');
-const indexView = require('./app/view/index');
-
-const tennis_rules = require('./app/model/tennis_rules');
-
-const query = queryString.parse(window.location.search.substr(1));
-
 import React from "react";
-import ReactDom from "react-dom";
-import renderHTML from 'react-render-html';
+import tennis_rules from '../model/tennis_rules';
 
-class Layout extends React.Component {
+export default class Layout extends React.Component {
   scoreLink(player1, player2, scorer){
     return function(){
       window.location=`/?player1=${player1}&player2=${player2}&scorer=${scorer}`;
     };
   }
   render() {
+    const query = require('querystring').parse(window.location.search.substr(1));
     const data = tennis_rules.scorePlayer(query);
     return (
       <div>
@@ -32,6 +24,3 @@ class Layout extends React.Component {
     );
   }
 }
-const app = document.getElementById('app');
-
-ReactDom.render(<Layout/>, app);

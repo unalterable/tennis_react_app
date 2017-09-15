@@ -10,7 +10,7 @@ let browser, dom;
 
 describe("Tennis Scoring", function(){
   before('Start server', function(){
-    server = require("../index.js");
+    server = require("../server.js");
   });
   describe("Total Feature", function(){
     this.timeout(30*1000);

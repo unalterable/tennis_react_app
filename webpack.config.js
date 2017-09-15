@@ -1,5 +1,5 @@
 module.exports = {
-    entry: './app.js',
+    entry: './app/view/app.js',
     output: {
         path: __dirname + '/build',
         filename: 'app.min.js'
