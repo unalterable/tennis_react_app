@@ -29,7 +29,7 @@ describe("Tennis Scoring", function(){
       expect(dom).to.have.string('<div>Player 1</div><div>15</div>');
       expect(dom).to.have.string('<div>Player 2</div><div>15</div>');
     });
-    it('Player 2 Wins', function*(){
+    it('Player 2 Wins - Game Resets', function*(){
       yield browser.click('#player2Scores');
       yield browser.click('#player2Scores');
       yield browser.click('#player2Scores');
@@ -37,6 +37,37 @@ describe("Tennis Scoring", function(){
       expect(dom).to.have.string('<div>Player 1</div><div>0</div>');
       expect(dom).to.have.string('<div>Player 2</div><div>0</div>');
       expect(dom).to.have.string('player2 Won!');
+    });
+    it('Player 1 Scores 40', function*(){
+      yield browser.click('#player1Scores');
+      yield browser.click('#player1Scores');
+      yield browser.click('#player1Scores');
+      dom = yield browser.getDom()
+      expect(dom).to.have.string('<div>Player 1</div><div>40</div>');
+      expect(dom).to.have.string('<div>Player 2</div><div>0</div>');
+    });
+    it('Player 2 Gets to Duece', function*(){
+      yield browser.click('#player2Scores');
+      yield browser.click('#player2Scores');
+      yield browser.click('#player2Scores');
+      dom = yield browser.getDom()
+      expect(dom).to.have.string('<div>Player 1</div><div>40</div>');
+      expect(dom).to.have.string('<div>Player 2</div><div>40</div>');
+    });
+    it('Player 2 Scores Advantage', function*(){
+      yield browser.click('#player2Scores');
+      dom = yield browser.getDom()
+      expect(dom).to.have.string('<div>Player 1</div><div>40</div>');
+      expect(dom).to.have.string('<div>Player 2</div><div>A</div>');
+    });
+    it('Player 1 Wins - Game Resets', function*(){
+      yield browser.click('#player1Scores');
+      yield browser.click('#player1Scores');
+      yield browser.click('#player1Scores');
+      dom = yield browser.getDom()
+      expect(dom).to.have.string('<div>Player 1</div><div>0</div>');
+      expect(dom).to.have.string('<div>Player 2</div><div>0</div>');
+      expect(dom).to.have.string('player1 Won!');
     });
     after('Quit Browser', function*(){
       yield browser.quit();
