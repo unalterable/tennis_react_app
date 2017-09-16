@@ -69,6 +69,16 @@ describe("Tennis Scoring", function(){
       expect(dom).to.have.string('<div>Player 2</div><div>0</div>');
       expect(dom).to.have.string('player1 Won!');
     });
+    it('Game Reset Button works', function*(){
+      yield browser.click('#player1Scores');
+      dom = yield browser.getDom()
+      expect(dom).to.have.string('<div>Player 1</div><div>15</div>');
+      expect(dom).to.have.string('<div>Player 2</div><div>0</div>');
+      yield browser.click('#resetGame');
+      dom = yield browser.getDom()
+      expect(dom).to.have.string('<div>Player 1</div><div>0</div>');
+      expect(dom).to.have.string('<div>Player 2</div><div>0</div>');
+    });
     after('Quit Browser', function*(){
       yield browser.quit();
     });

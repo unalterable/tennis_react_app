@@ -2,24 +2,27 @@ import React from "react";
 import tennis_rules from '../model/tennis_rules';
 
 export default class Layout extends React.Component {
-  scoreLink(player1, player2, scorer){
-    return function(){
-      window.location=`/?player1=${player1}&player2=${player2}&scorer=${scorer}`;
+  constructor(){
+    super();
+    const query = require('querystring').parse(window.location.search.substr(1));
+    this.state = {
+      score: tennis_rules.scorePlayer(query)
     };
   }
+  handleClick(data, scorer){
+    this.setState({score: tennis_rules.scorePlayer(Object.assign(data, {scorer: scorer}))});
+  }
   render() {
-    const query = require('querystring').parse(window.location.search.substr(1));
-    const data = tennis_rules.scorePlayer(query);
     return (
       <div>
         <div>Player 1</div>
-        <div>{data.player1}</div>
+        <div>{this.state.score.player1}</div>
         <div>Player 2</div>
-        <div>{data.player2}</div>
-        <div>{data.winner && data.winner + " Won!"}</div>
-        <button id="player1Scores" onClick={this.scoreLink(data.player1, data.player2, 'player1')}>Player 1 scored</button>
-        <button id="player2Scores" onClick={this.scoreLink(data.player1, data.player2, 'player2')}>Player 2 scored</button>
-        <button id="resetGame" onClick={this.scoreLink(data.player1, data.player2, false)}>Reset Game</button>
+        <div>{this.state.score.player2}</div>
+        <div>{this.state.score.winner && this.state.score.winner + " Won!"}</div>
+        <button id="player1Scores" onClick={this.handleClick.bind(this, this.state.score, 'player1')}>Player 1 scored</button>
+        <button id="player2Scores" onClick={this.handleClick.bind(this, this.state.score, 'player2')}>Player 2 scored</button>
+        <button id="resetGame" onClick={this.handleClick.bind(this, {}, '')}>Reset Game</button>
       </div>
     );
   }
