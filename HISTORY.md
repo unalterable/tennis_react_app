@@ -46,6 +46,11 @@
 * Architecture: API listens on /tennis_rules, it responds with the JSON result of putting the query params through the tennis scorer.
 * Tests all pass. API tests built with http-fetch.
 
+#### API integration && React Components
+
+
+* Seperated 
+
 #### React Calls API from buttons
 
 #### Prettify

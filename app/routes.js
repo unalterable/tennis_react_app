@@ -7,7 +7,8 @@ const tennis_rules = require('./model/tennis_rules');
 app.use(express.static('build'));
 
 app.get('/tennis_rules', function(req, res){
-  res.end(JSON.stringify(tennis_rules.scorePlayer(req.query)));
+  const scores = tennis_rules.cleanScores(req.query);
+  res.end(JSON.stringify(tennis_rules.scorePlayer(scores)));
 })
 
 module.exports = app;

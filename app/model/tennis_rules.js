@@ -32,6 +32,14 @@ const TENNIS_RULES = {
       return result;
     }
     return args;
+  },
+  cleanScores: function(score){
+    function cleanScore(num){
+      return TENNIS_SCORES.indexOf(num) > -1 ? num : TENNIS_SCORES[0];
+    }
+    const P1 = cleanScore(score.player1),
+          P2 = cleanScore(score.player2);
+    return Object.assign(score, {player1: P1, player2: P2});
   }
 };
 
