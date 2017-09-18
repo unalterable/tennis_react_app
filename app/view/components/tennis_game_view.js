@@ -1,7 +1,7 @@
 import React from "react";
-import Player from './player_view';
-import ButtonPanel from './button_panel';
-import Winner from './winner_view';
+import PlayerRow from './player_row';
+import ButtonRow from './button_row';
+import WinnerRow from './winner_row';
 
 const PLAYER1 = "Player 1";
 const PLAYER2 = "Player 2";
@@ -13,16 +13,15 @@ export default class TennisGame extends React.Component {
   }
   render() {
     return (
-      <div>
-        {this.props.ui.blockUI ? null :
-          <div id="players_section">
-            <Player player={PLAYER1} score={this.props.score.player1} />
-            <Player player={PLAYER2} score={this.props.score.player2} />
-          </div>}
+      <div id="tennis_game" className="container m-5 p-3 text-center border rounded">
+        { this.props.ui.blockUI ? null :
+          <PlayerRow players={[
+            {name: PLAYER1, score: this.props.score.player1},
+            {name: PLAYER2, score: this.props.score.player2}]}/> }
         { this.props.score.winner ?
-          <Winner winner={prettyWinner[this.props.score.winner]}/> : null}
-        {this.props.ui.blockUI ? null :
-          <ButtonPanel changeScore={this.props.fetchNewScore} score={this.props.score}/> }
+          <WinnerRow winner={prettyWinner[this.props.score.winner]}/> : null}
+        { this.props.ui.blockUI ? null :
+          <ButtonRow changeScore={this.props.fetchNewScore} score={this.props.score} />}
       </div>
     );
   }

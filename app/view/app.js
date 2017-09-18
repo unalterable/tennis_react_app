@@ -4,9 +4,8 @@ import { createStore, applyMiddleware } from "redux";
 import { Provider } from "react-redux";
 import thunkMiddleware from 'redux-thunk'
 
-import TennisGame from "./components/tennis_game_view"
 import tennis_game_reducer from "./reducers/tennis_game"
-import Layout from './components/layout';
+import TennisGameContainer from './components/tennis_game_container';
 
 const store = createStore(
   tennis_game_reducer,
@@ -15,6 +14,6 @@ const store = createStore(
 
 ReactDom.render(
   <Provider store={store}>
-    <Layout />
-    </Provider >
+    <TennisGameContainer />
+  </Provider >
   , document.getElementById('app'));

@@ -31,29 +31,16 @@ module.exports = function(){
       return (yield browser.waitFor(css)).click();
     }),
 
-    type: co.wrap(function*(css, str){
-      return (yield browser.waitFor(css)).sendKeys(str);
-    }),
-
     waitFor: co.wrap(function*(css){
       return driver.wait(until.elementLocated(By.css(css)), 2000);
     }),
 
-    switchFrame: co.wrap(function*(css){
-      return driver.switchTo().frame(yield browser.waitFor(css))
-    }),
-
-    switchToLastWindow: co.wrap(function*(){
-      const handles = yield driver.getAllWindowHandles();
-      return driver.switchTo().window(handles[handles.length - 1]);
-    }),
-
-    exists: co.wrap(function*(css){
-      return driver.findElement(By.css(css)).then(ele=>true,err=>false);
-    }),
-
     getDom: co.wrap(function*(){
       return driver.getPageSource();
+    }),
+
+    getText: co.wrap(function*(css){
+      return browser.waitFor(css).then(ele=>ele.getText());
     }),
 
     quit: co.wrap(function*(){
