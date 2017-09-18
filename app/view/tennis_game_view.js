@@ -14,7 +14,9 @@ export default class TennisGame extends React.Component {
     this.state = { score: tennis_rules.scorePlayer({}) };
   }
   changeScore(data, scorer){
-    this.setState({score: tennis_rules.scorePlayer(Object.assign(data, {scorer: scorer}))});
+    let url = `http://localhost:3000/tennis_rules?player1=${data.player1}&player2=${data.player2}`
+    if(scorer){url = url + `&scorer=${scorer}`};
+    fetch(url).then(res=>{ res.json().then(json=>{ this.setState({score: json}); }) })
   }
   render() {
     return (
