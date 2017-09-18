@@ -48,9 +48,8 @@
 
 #### API integration && React Components
 
+#### Redux Integration
 
-* Seperated 
-
-#### React Calls API from buttons
+#### Redux Async Actions
 
 #### Prettify
