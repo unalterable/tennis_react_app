@@ -5,7 +5,8 @@ import TennisGame from './tennis_game_view';
 
 const mapStateToProps = state => {
   return {
-    score : state.score
+    score : state.score,
+    ui: state.ui
   }
 }
 

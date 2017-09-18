@@ -19,17 +19,13 @@ export const fetchingNewScore = () => {
   }
 }
 
-export const fetchNewScore = (score, scorer) => {
-  return (dispatch)=>{
-    dispatch(fetchingNewScore());
-
-    let url = `http://localhost:3000/tennis_rules?player1=${score.player1}&player2=${score.player2}`;
-    if(scorer){url = url + `&scorer=${scorer}`};
-    return fetch(url).then(
-      (res)=>{ return res.json() },
-      (err)=>{ dispatch(errorFetchingScore(err)) }
-    ).then(
-      (json)=> { dispatch(newScore(json)) }
-    )
-  }
+export const fetchNewScore = (score, scorer) => (dispatch)=> {
+  dispatch(fetchingNewScore());
+  let url = `http://localhost:3000/tennis_rules?player1=${score.player1}&player2=${score.player2}${scorer ? `&scorer=${scorer}` : ``}`;
+  return fetch(url).then(
+    (res)=> res.json(),
+    (err)=>{ dispatch(errorFetchingScore(err)) }
+  ).then(
+    (json)=> { dispatch(newScore(json)) }
+  )
 }

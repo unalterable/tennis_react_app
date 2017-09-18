@@ -4,13 +4,15 @@ require('mocha');
 require('co-mocha');
 const expect = require('chai').expect;
 const Browser = require('./browser-helper');
-const app = require("../app/routes.js");
+const routes = require("../app/routes.js");
 let server, browser, dom;
+
 
 describe("Tennis Scoring", function(){
   this.timeout(30*1000);
   before('Start server', function*(){
-    server = app.listen(3000);
+    const slowingMiddleware = (req, res, next)=>{ setTimeout(next, 100) }
+    server = routes(slowingMiddleware).listen(3000);
   });
   describe("Total Feature", function(){
     before('Start Browser', function*(){
@@ -19,12 +21,14 @@ describe("Tennis Scoring", function(){
     });
     it('Player 1 Scores', function*(){
       yield browser.click('#player1Scores');
-      dom = yield browser.getDom()
+      yield browser.waitFor("#players_section");
+      dom = yield browser.getDom();
       expect(dom).to.have.string('<div>Player 1</div><div>15</div>');
       expect(dom).to.have.string('<div>Player 2</div><div>0</div>');
     });
     it('Player 2 Scores', function*(){
       yield browser.click('#player2Scores');
+      yield browser.waitFor("#players_section");
       dom = yield browser.getDom()
       expect(dom).to.have.string('<div>Player 1</div><div>15</div>');
       expect(dom).to.have.string('<div>Player 2</div><div>15</div>');
@@ -33,6 +37,7 @@ describe("Tennis Scoring", function(){
       yield browser.click('#player2Scores');
       yield browser.click('#player2Scores');
       yield browser.click('#player2Scores');
+      yield browser.waitFor("#players_section");
       dom = yield browser.getDom()
       expect(dom).to.have.string('<div>Player 1</div><div>0</div>');
       expect(dom).to.have.string('<div>Player 2</div><div>0</div>');
@@ -42,6 +47,7 @@ describe("Tennis Scoring", function(){
       yield browser.click('#player1Scores');
       yield browser.click('#player1Scores');
       yield browser.click('#player1Scores');
+      yield browser.waitFor("#players_section");
       dom = yield browser.getDom()
       expect(dom).to.have.string('<div>Player 1</div><div>40</div>');
       expect(dom).to.have.string('<div>Player 2</div><div>0</div>');
@@ -50,12 +56,14 @@ describe("Tennis Scoring", function(){
       yield browser.click('#player2Scores');
       yield browser.click('#player2Scores');
       yield browser.click('#player2Scores');
+      yield browser.waitFor("#players_section");
       dom = yield browser.getDom()
       expect(dom).to.have.string('<div>Player 1</div><div>40</div>');
       expect(dom).to.have.string('<div>Player 2</div><div>40</div>');
     });
     it('Player 2 Scores Advantage', function*(){
       yield browser.click('#player2Scores');
+      yield browser.waitFor("#players_section");
       dom = yield browser.getDom()
       expect(dom).to.have.string('<div>Player 1</div><div>40</div>');
       expect(dom).to.have.string('<div>Player 2</div><div>A</div>');
@@ -64,6 +72,7 @@ describe("Tennis Scoring", function(){
       yield browser.click('#player1Scores');
       yield browser.click('#player1Scores');
       yield browser.click('#player1Scores');
+      yield browser.waitFor("#players_section");
       dom = yield browser.getDom()
       expect(dom).to.have.string('<div>Player 1</div><div>0</div>');
       expect(dom).to.have.string('<div>Player 2</div><div>0</div>');
@@ -71,10 +80,12 @@ describe("Tennis Scoring", function(){
     });
     it('Game Reset Button works', function*(){
       yield browser.click('#player1Scores');
+      yield browser.waitFor("#players_section");
       dom = yield browser.getDom()
       expect(dom).to.have.string('<div>Player 1</div><div>15</div>');
       expect(dom).to.have.string('<div>Player 2</div><div>0</div>');
       yield browser.click('#resetGame');
+      yield browser.waitFor("#players_section");
       dom = yield browser.getDom()
       expect(dom).to.have.string('<div>Player 1</div><div>0</div>');
       expect(dom).to.have.string('<div>Player 2</div><div>0</div>');
