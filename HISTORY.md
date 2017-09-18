@@ -47,9 +47,15 @@
 * Tests all pass. API tests built with http-fetch.
 
 #### API integration && React Components
+[Commit](https://github.com/unalterable/tennis_react_app/tree/a6807bf807585ba316e555e96623769bf200a4b6) :
+[Tennis Game View](https://github.com/unalterable/tennis_react_app/blob/a6807bf807585ba316e555e96623769bf200a4b6/app/view/tennis_game_view.js)
 
 #### Redux Integration
+[Commit](https://github.com/unalterable/tennis_react_app/tree/a6807bf807585ba316e555e96623769bf200a4b6):  [Actions](https://github.com/unalterable/tennis_react_app/blob/6c90fd281edbcc8cba8d9819ea07ac64c8182777/app/view/actions/tennis_game.js) |
+[Reducers](https://github.com/unalterable/tennis_react_app/blob/6c90fd281edbcc8cba8d9819ea07ac64c8182777/app/view/reducers/tennis_game.js) | [Mappings](https://github.com/unalterable/tennis_react_app/blob/6c90fd281edbcc8cba8d9819ea07ac64c8182777/app/view/components/layout.js)
 
 #### Redux Async Actions
+[Commit](https://github.com/unalterable/tennis_react_app/tree/14017a543c96834336a983db3e94fd20126c0f09):  [Actions](https://github.com/unalterable/tennis_react_app/blob/14017a543c96834336a983db3e94fd20126c0f09/app/view/actions/tennis_game.js) |
+
 
 #### Prettify

@@ -1,7 +1,7 @@
 import React from "react";
 import {connect} from "react-redux";
 import { fetchNewScore } from "../actions/tennis_game";
-import TennisGame from './tennis_game_view';
+import TennisGame from '../components/tennis_game';
 
 const mapStateToProps = state => {
   return {

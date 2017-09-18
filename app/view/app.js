@@ -5,7 +5,7 @@ import { Provider } from "react-redux";
 import thunkMiddleware from 'redux-thunk'
 
 import tennis_game_reducer from "./reducers/tennis_game"
-import TennisGameContainer from './components/tennis_game_container';
+import TennisGameContainer from './containers/tennis_game';
 
 const store = createStore(
   tennis_game_reducer,
