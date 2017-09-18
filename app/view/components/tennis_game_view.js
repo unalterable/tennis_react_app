@@ -11,11 +11,11 @@ export default class TennisGame extends React.Component {
   constructor(){
     super();
   }
-  changeScore(data, scorer){
-    let url = `http://localhost:3000/tennis_rules?player1=${data.player1}&player2=${data.player2}`
-    if(scorer){url = url + `&scorer=${scorer}`};
-    fetch(url).then(res=>{ res.json().then(json=>{ this.props.newScore(json) }) })
-  }
+  // changeScore(data, scorer){
+  //   let url = `http://localhost:3000/tennis_rules?player1=${data.player1}&player2=${data.player2}`
+  //   if(scorer){url = url + `&scorer=${scorer}`};
+  //   fetch(url).then(res=>{ res.json().then(json=>{ this.props.newScore(json) }) })
+  // }
   render() {
     return (
       <div>
@@ -23,7 +23,7 @@ export default class TennisGame extends React.Component {
         <Player player={PLAYER2} score={this.props.score.player2} />
         { this.props.score.winner ?
           <Winner winner={prettyWinner[this.props.score.winner]}/> : null}
-        <ButtonPanel changeScore={this.changeScore.bind(this)} score={this.props.score}/>
+        <ButtonPanel changeScore={this.props.fetchNewScore} score={this.props.score}/>
       </div>
     );
   }

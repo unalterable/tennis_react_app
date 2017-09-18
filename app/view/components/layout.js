@@ -1,6 +1,6 @@
 import React from "react";
 import {connect} from "react-redux";
-import { newScore } from "../actions/tennis_game";
+import { fetchNewScore } from "../actions/tennis_game";
 import TennisGame from './tennis_game_view';
 
 const mapStateToProps = state => {
@@ -11,8 +11,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    newScore: (new_score) => {
-      dispatch( newScore(new_score) ) }
+    fetchNewScore: (score, scorer) => {
+      dispatch( fetchNewScore(score, scorer) ) }
   }
 }
 
