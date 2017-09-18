@@ -1,61 +1,85 @@
 #### Tennis match function
-[Commit](https://github.com/unalterable/tennis_react_app/tree/62c2699a963169f78e9c52e7f154d06e2befbc90)
-* Started with the core tennis match functionality. Treated as a pure function with no state.
-* Architecture: No application - just unit tests
+[Project Snapshot ](https://github.com/unalterable/tennis_react_app/tree/62c2699a963169f78e9c52e7f154d06e2befbc90)
+* Just core tennis match functionality with unit tests
 
 #### Node Core Server
-[Commit](https://github.com/unalterable/tennis_react_app/tree/819abe0ba93552faf098cb5a50a2015460957f55)
-* Added a node server from node core.
-* Architecture:
-  * The server listens to all traffic on port 3000. It puts the query params through the tennis scoring script.
-  * It returns the new score shown within an ejs html template with buttons linking to the next iteration.
-  * I needed to organise my files into MVC folders.
-* Tests: Added http-fetch tests. http-fetch uses promises as opposed to ?????. I like promises but it will require co-mocha.
+[Project Snapshot](https://github.com/unalterable/tennis_react_app/tree/819abe0ba93552faf098cb5a50a2015460957f55):
+([Server.js](https://github.com/unalterable/tennis_react_app/blob/819abe0ba93552faf098cb5a50a2015460957f55/app/server.js))
+* Simple node server from node core rendering score through ejs template.
 
 #### Express Server Conversion
-[Commit](https://github.com/unalterable/tennis_react_app/tree/4ca715eded52bfaa90947dd30386af15623c9e8a)
-* The need to serve up static files required too many libraries using node core server. Plus I could do with an easy handle to stop/start the server, and a built in query params interpreter.
-* Architecture: Express server listens on '/'.
-* Tests: all pass. Added Selenium Tests using a selenium wrapper I made for another project.
+[Project Snapshot](https://github.com/unalterable/tennis_react_app/tree/4ca715eded52bfaa90947dd30386af15623c9e8a):
+([Selenium Tests](https://github.com/unalterable/tennis_react_app/blob/4ca715eded52bfaa90947dd30386af15623c9e8a/test/feature_spec.js))
+* Added Selenium tests and switched to Express.js for ease of use.
 
 #### Webpack Setup
-[Commit](https://github.com/unalterable/tennis_react_app/tree/59b1e80ee961094703773b2f87a42dea44d236de)
-* To move forward I was going to have to have a JSX and ES6 transpiler for my browser.
-  * Switched the html to be rendered by the browser:
-    * which brought the tennis_rules script from being executed in the back-end response flow to the front end rendering flow.
-    * Had to switch templater from ejs to mustache.
-* Express now purely serves up the build folder statically.
-* Learned how webpack works and the '--watch' flag. Learned about webpack config is laid out and wrote a basic config JSON from scratch.
-* Tests: all pass. Relying more heavily on selenium as http-fetch can only see the first script tag, not the js-rendered elements.
+[Project Snapshot](https://github.com/unalterable/tennis_react_app/tree/59b1e80ee961094703773b2f87a42dea44d236de):
+([Webpack Config](https://github.com/unalterable/tennis_react_app/blob/59b1e80ee961094703773b2f87a42dea44d236de/webpack.config.js))
+* Brought in Webpack for transpilers.
 
 #### First React Component
-[Commit](https://github.com/unalterable/tennis_react_app/tree/1b8e10b3b2662193dc66309b6854e0d0016a7607)
-* Added webpack plugins for babel-es6 and babel-react.
-* Added first react component on page.
-* Learned that React does not like you to manually insert HTML. You can but you have to use a function with the word 'dangerous' in it. And even then you have to
-* Converted template to JSX.
-* Architecture:
-  * Webpack compiles an entry-point js file, from React files.
-  * Express serves up build folder. Which now includes an index.html entry-point.
-  * 1 React layout component calling tennis score function and rendering JSX template.
-* Tests all pass.
+[Project Snapshot](https://github.com/unalterable/tennis_react_app/tree/1b8e10b3b2662193dc66309b6854e0d0016a7607):
+([Layout Component](https://github.com/unalterable/tennis_react_app/blob/1b8e10b3b2662193dc66309b6854e0d0016a7607/app/view/layout.js))
+* Added webpack plugins for babel-es6 and babel-react. Converted templater to a react component with JSX.
+* Express now serves a build folder with compiled react components.
 
 #### Tennis Scoring API
-[Commit](https://github.com/unalterable/tennis_react_app/tree/03aa52b77314b0669109d07ec64c4e6fe681da14)
-* Porting the functionality to the front end was only to satisfy the needs of the static templating engine. In React change should be rendered on the page, so the functionality needed to become an API on the node server.
-* Architecture: API listens on /tennis_rules, it responds with the JSON result of putting the query params through the tennis scorer.
-* Tests all pass. API tests built with http-fetch.
+[Project Snapshot](https://github.com/unalterable/tennis_react_app/tree/03aa52b77314b0669109d07ec64c4e6fe681da14):
+([API Tests](https://github.com/unalterable/tennis_react_app/blob/03aa52b77314b0669109d07ec64c4e6fe681da14/test/api_spec.js))
+* Build a JSON API for the tennis scoring - fully tested but not used.
 
 #### API integration && React Components
-[Commit](https://github.com/unalterable/tennis_react_app/tree/a6807bf807585ba316e555e96623769bf200a4b6) :
-[Tennis Game View](https://github.com/unalterable/tennis_react_app/blob/a6807bf807585ba316e555e96623769bf200a4b6/app/view/tennis_game_view.js)
+[Project Snapshot](https://github.com/unalterable/tennis_react_app/tree/a6807bf807585ba316e555e96623769bf200a4b6):
+([Call to API in Tennis Game](https://github.com/unalterable/tennis_react_app/blob/a6807bf807585ba316e555e96623769bf200a4b6/app/view/tennis_game_view.js))
+* Altered components to call the back-end API instead of using the tennis scoring library.
 
 #### Redux Integration
-[Commit](https://github.com/unalterable/tennis_react_app/tree/a6807bf807585ba316e555e96623769bf200a4b6):  [Actions](https://github.com/unalterable/tennis_react_app/blob/6c90fd281edbcc8cba8d9819ea07ac64c8182777/app/view/actions/tennis_game.js) |
-[Reducers](https://github.com/unalterable/tennis_react_app/blob/6c90fd281edbcc8cba8d9819ea07ac64c8182777/app/view/reducers/tennis_game.js) | [Mappings](https://github.com/unalterable/tennis_react_app/blob/6c90fd281edbcc8cba8d9819ea07ac64c8182777/app/view/components/layout.js)
+[Project Snapshot](https://github.com/unalterable/tennis_react_app/tree/a6807bf807585ba316e555e96623769bf200a4b6):  ([Actions](https://github.com/unalterable/tennis_react_app/blob/6c90fd281edbcc8cba8d9819ea07ac64c8182777/app/view/actions/tennis_game.js) |
+[Reducers](https://github.com/unalterable/tennis_react_app/blob/6c90fd281edbcc8cba8d9819ea07ac64c8182777/app/view/reducers/tennis_game.js) | [Mappings](https://github.com/unalterable/tennis_react_app/blob/6c90fd281edbcc8cba8d9819ea07ac64c8182777/app/view/components/layout.js))
+* Converted to a Redux architecture with Reducers, Actions and a layout component that maps state and dispatchers to child properties.
 
 #### Redux Async Actions
-[Commit](https://github.com/unalterable/tennis_react_app/tree/14017a543c96834336a983db3e94fd20126c0f09):  [Actions](https://github.com/unalterable/tennis_react_app/blob/14017a543c96834336a983db3e94fd20126c0f09/app/view/actions/tennis_game.js) |
+[Project Snapshot](https://github.com/unalterable/tennis_react_app/tree/14017a543c96834336a983db3e94fd20126c0f09):
+([Actions with Async](https://github.com/unalterable/tennis_react_app/blob/14017a543c96834336a983db3e94fd20126c0f09/app/view/actions/tennis_game.js) |
+[Tests for slow server ](https://github.com/unalterable/tennis_react_app/blob/14017a543c96834336a983db3e94fd20126c0f09/test/feature_spec.js))
+* Added resiliency tests (where server is slow).
+* Hid score during API call and show again on response.
 
 
 #### Prettify
+[Project Snapshot](https://github.com/unalterable/tennis_react_app/tree/1ceba6012631e8570497892b3fb212bcbcbb4a9e)
+* Added Bootstrap for presentation. Added README.md. Cleaned package.json.
+* Refactored directories & filenames for a better project layout:
+
+```
+- app/
+  ├── model
+  │   └── tennis_rules.js
+  ├── routes.js
+  └── view
+      ├── actions
+      │   └── tennis_game.js
+      ├── app.js
+      ├── components
+      │   ├── button_row.js
+      │   ├── player_row.js
+      │   ├── tennis_game.js
+      │   └── winner_row.js
+      ├── containers
+      │   └── tennis_game.js
+      └── reducers
+          └── tennis_game.js      
+- build/
+  ├── app.min.js
+  ├── app.min.js.map
+  └── index.html
+- test/
+  ├── browser-helper.js
+  ├── feature_spec.js
+  ├── routes_spec.js
+  └── tennis_rules_spec.js
+- HISTORY.md  
+- package.json  
+- server.js  
+- webpack.config.js
+```
