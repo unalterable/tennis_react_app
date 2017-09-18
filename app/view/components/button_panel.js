@@ -1,5 +1,4 @@
 import React from "react";
-import tennis_rules from '../model/tennis_rules';
 import Player from './player_view';
 
 const PLAYER1 = "Player 1";

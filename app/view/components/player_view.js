@@ -1,5 +1,5 @@
 import React from "react";
-import tennis_rules from '../model/tennis_rules';
+
 
 export default class Player extends React.Component {
   render() {

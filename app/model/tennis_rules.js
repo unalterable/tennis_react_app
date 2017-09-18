@@ -39,7 +39,7 @@ const TENNIS_RULES = {
     }
     const P1 = cleanScore(score.player1),
           P2 = cleanScore(score.player2);
-    return Object.assign(score, {player1: P1, player2: P2});
+    return Object.assign({}, score, {player1: P1, player2: P2});
   }
 };
 
