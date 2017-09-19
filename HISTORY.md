@@ -1,3 +1,9 @@
+
+## Project History
+
+This project was created by first fulfilling the business requirements (a tennis scoring webpage application), with the minimum of libraries.
+Then gradually it was refactored into a React/Redux application, served using Webpack and Express.
+
 #### Tennis match function
 [Project Snapshot ](https://github.com/unalterable/tennis_react_app/tree/62c2699a963169f78e9c52e7f154d06e2befbc90)
 * Just core tennis match functionality with unit tests
@@ -47,7 +53,7 @@
 
 
 #### Prettify
-[Project Snapshot](https://github.com/unalterable/tennis_react_app/tree/1ceba6012631e8570497892b3fb212bcbcbb4a9e)
+[Project Snapshot](https://github.com/unalterable/tennis_react_app/tree/e3bd4de6125789d33c9a7b2d1fdd335b2d5d4440)
 * Added Bootstrap for presentation. Added README.md. Cleaned package.json.
 * Refactored directories & filenames for a better project layout:
 
